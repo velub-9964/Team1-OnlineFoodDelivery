@@ -9,7 +9,7 @@ using OrderService.Models;
 namespace OrderService.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[Orders]")]
 public class OrderController : ControllerBase
 {
     private readonly OrderDbContext _context;
