@@ -1,0 +1,217 @@
+Restaurant Service Notes
+
+Working Run Command:
+
+dotnet run --project "C:\Users\thengata\Documents\Dot_Net_Projects\OnlineFoodDelivery\RestaurantService\RestaurantService.csproj" /p:UseAppHost=false
+
+Reason:
+Fixes "Access is denied" error.
+
+Database:
+RestaurantDb
+
+Server:
+INB594HCJ4\SQLEXPRESS
+
+Migration:
+dotnet ef migrations add InitialCreate
+
+Database Update:
+dotnet ef database update
+
+Swagger:
+http://localhost:5100/swagger
+
+
+
+
+
+
+====================================================
+10 RESTAURANT PAYLOADS
+====================================================
+
+Restaurant 1
+{
+  "name": "ABC Restaurant",
+  "address": "T Nagar, Chennai",
+  "phone": "9876543210",
+  "isOpen": true
+}
+
+Restaurant 2
+{
+  "name": "A2B Restaurant",
+  "address": "Anna Nagar, Chennai",
+  "phone": "9876543211",
+  "isOpen": true
+}
+
+Restaurant 3
+{
+  "name": "Saravana Bhavan",
+  "address": "Velachery, Chennai",
+  "phone": "9876543212",
+  "isOpen": true
+}
+
+Restaurant 4
+{
+  "name": "SS Hyderabad Biryani",
+  "address": "Tambaram, Chennai",
+  "phone": "9876543213",
+  "isOpen": true
+}
+
+Restaurant 5
+{
+  "name": "Barbeque Nation",
+  "address": "OMR, Chennai",
+  "phone": "9876543214",
+  "isOpen": true
+}
+
+Restaurant 6
+{
+  "name": "Pizza Hut",
+  "address": "Adyar, Chennai",
+  "phone": "9876543215",
+  "isOpen": true
+}
+
+Restaurant 7
+{
+  "name": "Dominos",
+  "address": "Porur, Chennai",
+  "phone": "9876543216",
+  "isOpen": true
+}
+
+Restaurant 8
+{
+  "name": "KFC",
+  "address": "Chromepet, Chennai",
+  "phone": "9876543217",
+  "isOpen": false
+}
+
+Restaurant 9
+{
+  "name": "Subway",
+  "address": "Guindy, Chennai",
+  "phone": "9876543218",
+  "isOpen": true
+}
+
+Restaurant 10
+{
+  "name": "Burger King",
+  "address": "Perungudi, Chennai",
+  "phone": "9876543219",
+  "isOpen": true
+}
+
+====================================================
+10 MENU PAYLOADS
+====================================================
+
+Menu 1
+{
+  "restaurantId": 1,
+  "name": "Chicken Biryani",
+  "category": "Biryani",
+  "price": 250,
+  "isAvailable": true
+}
+
+Menu 2
+{
+  "restaurantId": 2,
+  "name": "Veg Meals",
+  "category": "Meals",
+  "price": 180,
+  "isAvailable": true
+}
+
+Menu 3
+{
+  "restaurantId": 3,
+  "name": "Mini Tiffin",
+  "category": "Breakfast",
+  "price": 150,
+  "isAvailable": true
+}
+
+Menu 4
+{
+  "restaurantId": 4,
+  "name": "Mutton Biryani",
+  "category": "Biryani",
+  "price": 320,
+  "isAvailable": true
+}
+
+Menu 5
+{
+  "restaurantId": 5,
+  "name": "Paneer Tikka",
+  "category": "Starter",
+  "price": 240,
+  "isAvailable": true
+}
+
+Menu 6
+{
+  "restaurantId": 6,
+  "name": "Chicken Supreme Pizza",
+  "category": "Pizza",
+  "price": 499,
+  "isAvailable": true
+}
+
+Menu 7
+{
+  "restaurantId": 7,
+  "name": "Farmhouse Pizza",
+  "category": "Pizza",
+  "price": 399,
+  "isAvailable": true
+}
+
+Menu 8
+{
+  "restaurantId": 8,
+  "name": "Hot Crispy Chicken",
+  "category": "Fast Food",
+  "price": 299,
+  "isAvailable": true
+}
+
+Menu 9
+{
+  "restaurantId": 9,
+  "name": "Veggie Delight",
+  "category": "Sandwich",
+  "price": 199,
+  "isAvailable": true
+}
+
+Menu 10
+{
+  "restaurantId": 10,
+  "name": "Whopper Burger",
+  "category": "Burger",
+  "price": 249,
+  "isAvailable": true
+}
+
+
+
+
+
+
+
+
+
+
+
