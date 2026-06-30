@@ -1,4 +1,11 @@
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using RabbitMQ.Client;
+using RestaurantService.Data;
+using RestaurantService.Repositories;
+using RestaurantService.Services;
+
 namespace RestaurantService
 {
     public class Program
@@ -7,42 +14,37 @@ namespace RestaurantService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddAuthorization();
+            builder.Services.AddControllers();
+            builder.Services.AddDbContext<RestaurantDbContext>(options=>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
+            builder.Services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+            builder.Services.AddScoped<IRestaurantService, RestaurantService.Services.RestaurantService>();
+            
+            builder.Services.AddSingleton<IConnectionFactory>(sp=>
+                new ConnectionFactory() {HostName = "localhost"}
+            );
+            builder.Services.AddSingleton<IConnection>(sp=>
+                sp.GetRequiredService<RabbitMQ.Client.IConnectionFactory>().CreateConnection()  //error! to be fixed
+            );
+            builder.Services.AddSingleton<IModel>(sp=>
+                sp.GetRequiredService<RabbitMQ.Client.IConnection>().CreateModel()  // error! to be fixed
+            );
 
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+            builder.Services.AddAuthorization();
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-            var summaries = new[]
-            {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
-
-            app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    {
-                        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = summaries[Random.Shared.Next(summaries.Length)]
-                    })
-                    .ToArray();
-                return forecast;
-            })
-            .WithName("GetWeatherForecast");
+            app.MapControllers();
+           
 
             app.Run();
         }
