@@ -15,7 +15,7 @@ namespace DeliveryService.Controllers
             _deliveryService = deliveryService;
         }
 
-        // POST: api/delivery
+       
         [HttpPost]
         public async Task<IActionResult> CreateDelivery(DeliveryRequestDto request)
         {
@@ -25,7 +25,7 @@ namespace DeliveryService.Controllers
                 new { deliveryId = result.DeliveryId }, result);
         }
 
-        // GET: api/delivery
+     
         [HttpGet]
         public async Task<IActionResult> GetAllDeliveries()
         {
@@ -34,7 +34,7 @@ namespace DeliveryService.Controllers
             return Ok(result);
         }
 
-        // GET: api/delivery/{deliveryId}
+       
         [HttpGet("{deliveryId:guid}")]
         public async Task<IActionResult> GetDeliveryById(Guid deliveryId)
         {
@@ -46,7 +46,7 @@ namespace DeliveryService.Controllers
             return Ok(delivery);
         }
 
-        // PUT: api/delivery/{deliveryId}
+        
         [HttpPut("{deliveryId:guid}")]
         public async Task<IActionResult> UpdateDeliveryStatus(
             Guid deliveryId,
@@ -59,7 +59,6 @@ namespace DeliveryService.Controllers
             return Ok(updatedDelivery);
         }
 
-        // DELETE: api/delivery/{deliveryId}
         [HttpDelete("{deliveryId:guid}")]
         public async Task<IActionResult> DeleteDelivery(Guid deliveryId)
         {
